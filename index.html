@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSI CHAPTER // Innovation Portal</title>
+  <meta name="description" content="GenZ Neobrutalist Hub for Student Hackathons, Engineering Ecosystems, and Rapid Open Source Prototyping.">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            ghostpink: '#FFC6FF',
+            cyberyellow: '#FDFFB6',
+            neomint: '#CAFFBF',
+            cyberteal: '#9BF6FF',
+            brutalblack: '#000000',
+            brutalwhite: '#FFFDF5',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #FFFDF5; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    
+    /* Neobrutalist Core Tokens */
+    .brutal-border { border: 4px solid #000000; }
+    .brutal-border-b { border-bottom: 4px solid #000000; }
+    .brutal-shadow-black { box-shadow: 5px 5px 0px 0px #000000; }
+    .brutal-shadow-pink { box-shadow: 6px 6px 0px 0px #FFC6FF, 6px 6px 0px 3px #000000; }
+    .brutal-shadow-teal { box-shadow: 6px 6px 0px 0px #9BF6FF, 6px 6px 0px 3px #000000; }
+    .brutal-shadow-yellow { box-shadow: 6px 6px 0px 0px #FDFFB6, 6px 6px 0px 3px #000000; }
+    
+    .brutal-btn {
+      border: 3px solid #000000;
+      box-shadow: 4px 4px 0px 0px #000000;
+      transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.1s ease;
+    }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px 0px #000000; }
+    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px 0px #000000; }
+
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-100%); } }
+    .animate-marquee { animation: marquee 25s linear infinite; }
+    
+    /* Hardened CSS Architecture Layer States */
+    .view-container { display: none; opacity: 0; }
+    .view-container.active-view { display: block !important; }
+  </style>
+</head>
+<body class="text-brutalblack antialiased">
+
+  <nav class="sticky top-0 z-50 w-full brutal-border border-t-0 border-x-0 bg-brutalwhite px-6 py-4 flex items-center justify-between">
+    <a href="#/" class="font-syne font-800 text-2xl tracking-tight flex items-center gap-2">
+      <span class="bg-ghostpink border-2 border-brutalblack px-2 py-0.5 text-xs font-mono font-bold shadow-[2px_2px_0px_#000]">CSI</span>
+      CSI CHAPTER
+    </a>
+    <div class="hidden md:flex items-center gap-6 font-mono font-bold text-xs">
+      <a href="#/about" class="hover:underline tracking-tight">// ABOUT</a>
+      <a href="#/events" class="hover:underline tracking-tight">// EVENTS</a>
+      <a href="#/projects" class="hover:underline tracking-tight">// PROJECTS</a>
+      <a href="#/blog" class="hover:underline tracking-tight">// INSIGHTS_BLOG</a>
+      <a href="#/" class="brutal-btn bg-cyberteal px-4 py-2 font-bold uppercase">JOIN_SYSTEM</a>
+    </div>
+  </nav>
+
+  <main id="view-home" class="view-container">
+    <section class="min-h-[80vh] px-6 py-12 md:py-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-block font-mono font-bold text-xs bg-neomint border-2 border-brutalblack px-3 py-1.5 shadow-[3px_3px_0px_#000] uppercase">
+          🚀 ENGINE REVOLUTION // NEXT-GEN PORTAL
+        </div>
+        <h1 class="font-syne font-800 text-5xl md:text-7xl lg:text-8xl leading-none tracking-tight uppercase">
+          We Build<br>The Pure<br>
+          <span class="bg-ghostpink px-3 py-1 border-4 border-brutalblack inline-block transform -rotate-1 brutal-shadow-black">
+            Future.
+          </span>
+        </h1>
+        <p class="text-lg md:text-xl font-medium max-w-xl text-zinc-800 leading-relaxed">
+          The elite national pipeline for modern engineering systems. Breaking software barriers, running sandboxes, and assembling products instantly.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#/events" class="brutal-btn bg-brutalblack text-white font-mono font-bold px-6 py-4">Explore Sandboxes_</a>
+          <a href="#/projects" class="brutal-btn bg-cyberyellow text-brutalblack font-mono font-bold px-6 py-4">View Frameworks &rarr;</a>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative">
+        <div id="interactive-card" class="brutal-border bg-brutalwhite p-8 relative z-10 brutal-shadow-pink transition-transform duration-100 cursor-pointer select-none">
+          <div class="flex items-center justify-between border-b-4 border-brutalblack pb-3 mb-4 font-mono font-bold text-xs">
+            <span>CONSOLE_LOG // ACTIVE</span>
+            <span class="w-3 h-3 bg-brutalblack rounded-none animate-ping"></span>
+          </div>
+          <p class="font-mono text-sm leading-relaxed text-zinc-800">
+            &gt; CSI.initializeChapter();<br>
+            &gt; Node strength: <span class="font-bold underline">100,000 members countrywide</span>.<br>
+            &gt; Intent: Driving architectural integrity, systems logic, and raw digital innovation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="bg-brutalblack text-white font-mono font-bold py-4 overflow-hidden whitespace-nowrap border-y-4 border-brutalblack flex">
+      <div class="animate-marquee flex gap-12 shrink-0 min-w-full justify-around text-sm md:text-base tracking-widest uppercase">
+        <span>✦ 72 CHAPTERS ACROSS INDIA ✦</span>
+        <span>✦ 511 STUDENT BRANCHES ✦</span>
+        <span>✦ BUILD SPRINT SANDBOXES ✦</span>
+        <span>✦ NON-PROFIT SYSTEMS ADVANCEMENT ✦</span>
+      </div>
+    </div>
+
+    <section class="px-6 py-20 max-w-7xl mx-auto space-y-12">
+      <h2 class="font-syne font-800 text-4xl md:text-5xl uppercase text-center">Core Operations</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="brutal-border p-6 bg-brutalwhite brutal-shadow-black">
+          <div class="w-10 h-10 bg-cyberteal border-2 border-brutalblack flex items-center justify-center font-mono font-bold shadow-[2px_2px_0px_#000] mb-4">01</div>
+          <h3 class="font-syne font-700 text-xl uppercase mb-2">Hackathons</h3>
+          <p class="text-sm text-zinc-600">High-velocity layout sprints where nodes gather to build production features under strict clocks.</p>
+        </div>
+        <div class="brutal-border p-6 bg-brutalwhite brutal-shadow-black">
+          <div class="w-10 h-10 bg-neomint border-2 border-brutalblack flex items-center justify-center font-mono font-bold shadow-[2px_2px_0px_#000] mb-4">02</div>
+          <h3 class="font-syne font-700 text-xl uppercase mb-2">Workshops</h3>
+          <p class="text-sm text-zinc-600">Deep dives into lower-latency application nodes, server patterns, and clean utility-first design syntax.</p>
+        </div>
+        <div class="brutal-border p-6 bg-brutalwhite brutal-shadow-black">
+          <div class="w-10 h-10 bg-ghostpink border-2 border-brutalblack flex items-center justify-center font-mono font-bold shadow-[2px_2px_0px_#000] mb-4">03</div>
+          <h3 class="font-syne font-700 text-xl uppercase mb-2">Sprints</h3>
+          <p class="text-sm text-zinc-600">Direct student collaboration scaling structural systems and peer mentorship modules.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-neomint px-6 py-16 border-t-4 border-brutalblack">
+      <div class="max-w-4xl mx-auto text-center space-y-6">
+        <h2 class="font-syne font-800 text-3xl md:text-4xl uppercase tracking-tight">Ecosystem Voices</h2>
+        <div class="brutal-border bg-brutalwhite p-8 brutal-shadow-black text-left transform -rotate-1">
+          <p class="font-mono text-base md:text-lg italic leading-relaxed text-zinc-900">
+            "CSI completely transformed how I evaluate system architecture. We don't write clean text patterns for a grades sheet—we launch production payloads that matter."
+          </p>
+          <p class="font-mono font-bold text-xs mt-4 uppercase text-zinc-600">// Dev Node, Alumni Class of '25</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-about" class="view-container">
+    <header class="bg-ghostpink border-b-4 border-brutalblack px-6 py-16 text-center">
+      <h1 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tight">About Us</h1>
+      <p class="font-mono text-xs font-bold mt-2">// THE CONTEXT TREE SINCE 1965</p>
+    </header>
+    <section class="max-w-4xl mx-auto px-6 py-16 space-y-12">
+      <div class="brutal-border bg-brutalwhite p-8 brutal-shadow-black space-y-4">
+        <h3 class="font-syne font-700 text-2xl uppercase">// Our Mandate & Mission</h3>
+        <p class="text-zinc-700 leading-relaxed font-sans">
+          The Computer Society of India is a non-profit professional group established to share ideas, build technologies, and expand theory validation across state branches.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-events" class="view-container">
+    <header class="bg-cyberteal border-b-4 border-brutalblack px-6 py-16 text-center">
+      <h1 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tight">Active Encounters</h1>
+      <p class="font-mono text-xs font-bold mt-2">// REGISTER TO CLAIM SEAT ALLOCATION</p>
+    </header>
+    <section class="max-w-5xl mx-auto px-6 py-16 space-y-6">
+      <div class="brutal-border bg-brutalwhite p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 brutal-shadow-black hover:bg-neomint transition-colors duration-150">
+        <div>
+          <span class="font-mono text-xs font-bold bg-brutalblack text-white px-2 py-0.5 uppercase">SYSTEM_SANDBOX</span>
+          <h3 class="font-syne font-800 text-2xl uppercase mt-2">DevSprint '26</h3>
+          <p class="text-sm text-zinc-600 mt-1">24-Hour continuous open source architecture execution block.</p>
+        </div>
+        <a href="#/event-item?id=devsprint" class="brutal-btn bg-brutalwhite px-4 py-2 font-mono font-bold text-sm">Enter Core_</a>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-event-item" class="view-container">
+    <section class="max-w-4xl mx-auto px-6 py-16 space-y-8">
+      <a href="#/events" class="font-mono text-xs font-bold hover:underline">&larr; BACK TO ALL ENCOUNTERS</a>
+      <div class="brutal-border bg-brutalwhite p-8 brutal-shadow-pink space-y-4">
+        <span class="bg-cyberyellow text-xs font-mono font-bold px-2 py-1 border border-brutalblack">SYSTEM_SANDBOX SPEC</span>
+        <h1 id="dynamic-event-title" class="font-syne font-800 text-4xl md:text-5xl uppercase">Loading Matrix Specs...</h1>
+        <p class="text-zinc-700 font-sans leading-relaxed">
+          This assembly block provides immediate technical sandboxes for systems engineering. Bring your machine configured with standard terminal tooling.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-projects" class="view-container">
+    <header class="bg-cyberyellow border-b-4 border-brutalblack px-6 py-16 text-center">
+      <h1 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tight">Built Shipped</h1>
+      <p class="font-mono text-xs font-bold mt-2">// REPOSITORIES COMPILED BY MEMBER CLASSES</p>
+    </header>
+    <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="brutal-border bg-brutalwhite p-6 brutal-shadow-black space-y-4">
+        <h3 class="font-syne font-800 text-2xl uppercase">Project HyperGrid</h3>
+        <p class="text-sm text-zinc-600">Utility-first UI canvas built to display structured server diagnostics inside high-traffic browser windows.</p>
+        <a href="#/project-item?id=hypergrid" class="brutal-btn bg-brutalblack text-white font-mono font-bold px-4 py-2 inline-block text-xs">Examine Codebase_</a>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-project-item" class="view-container">
+    <section class="max-w-4xl mx-auto px-6 py-16 space-y-6">
+      <a href="#/projects" class="font-mono text-xs font-bold hover:underline">&larr; RETURN TO REPOSITORIES</a>
+      <div class="brutal-border bg-brutalwhite p-8 brutal-shadow-teal space-y-4">
+        <h1 id="dynamic-project-title" class="font-syne font-800 text-4xl md:text-5xl uppercase">Loading Repository Specs...</h1>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-blog" class="view-container">
+    <header class="bg-neomint border-b-4 border-brutalblack px-6 py-16 text-center">
+      <h1 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tight">Insights Core</h1>
+    </header>
+    <section class="max-w-4xl mx-auto px-6 py-16 space-y-8">
+      <article class="brutal-border bg-brutalwhite p-6 brutal-shadow-black grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+        <div class="font-mono text-sm text-zinc-500">OCT 10, 2026</div>
+        <div class="md:col-span-2">
+          <h3 class="font-syne font-800 text-xl uppercase hover:underline cursor-pointer"><a href="#/blog-post?id=brutalism">The Case For Clean Neobrutalism</a></h3>
+        </div>
+        <div class="text-left md:text-right">
+          <a href="#/blog-post?id=brutalism" class="font-mono text-xs font-bold underline">Read Article //</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <main id="view-blog-post" class="view-container">
+    <article class="max-w-3xl mx-auto px-6 py-16 space-y-6">
+      <a href="#/blog" class="font-mono text-xs font-bold hover:underline">&larr; BACK TO INSIGHTS CORE</a>
+      <header class="space-y-2">
+        <h1 id="dynamic-blog-title" class="font-syne font-800 text-4xl md:text-5xl uppercase leading-tight">Loading Intel File...</h1>
+      </header>
+    </article>
+  </main>
+  <footer class="w-full bg-ghostpink border-t-4 border-brutalblack px-6 py-12 md:py-16 mt-auto">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <div class="lg:col-span-4 space-y-4">
+        <h3 class="font-syne font-800 text-2xl uppercase tracking-tight flex items-center gap-2">
+          <span class="bg-brutalblack text-white px-2 py-0.5 text-xs font-mono">SYS_END</span>
+          CSI CORE INDEX
+        </h3>
+        <p class="font-mono text-xs text-zinc-800 font-bold leading-relaxed">
+          // INTERCONNECTED NODE MAP FOR CLIENT BROWSERS.
+        </p>
+        <div class="grid grid-cols-2 gap-2 font-mono font-bold text-xs pt-2">
+          <a href="#/" class="hover:underline">&gt;_ HOME_BASE</a>
+          <a href="#/about" class="hover:underline">&gt;_ ABOUT_TREE</a>
+          <a href="#/events" class="hover:underline">&gt;_ ENCOUNTERS</a>
+          <a href="#/projects" class="hover:underline">&gt;_ PROJECTS</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 brutal-border bg-brutalblack text-neomint font-mono text-xs p-4 brutal-shadow-black h-48 flex flex-col justify-between">
+        <div id="terminal-history" class="overflow-y-auto space-y-1 pr-1 h-32 scrollbar-thin">
+          <div class="text-zinc-500">// CSI Terminal Interface Alpha v1.0.0</div>
+          <div class="text-zinc-400">Type 'help' or 'socials' to extract coordinates...</div>
+        </div>
+        <div class="flex items-center border-t border-zinc-800 pt-2 gap-2">
+          <span class="text-cyberyellow font-bold">visitor@csi:~$&nbsp;</span>
+          <input type="text" id="terminal-input" class="bg-transparent border-none outline-none text-neomint flex-1 font-mono uppercase" placeholder="ENTER COMMAND..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <div class="brutal-border bg-brutalwhite p-5 brutal-shadow-teal transform rotate-1 space-y-3">
+          <span class="bg-cyberyellow border border-brutalblack font-mono font-bold text-[10px] px-1.5 py-0.5 inline-block uppercase animate-pulse">
+            ⚠️ NETWORK LINK ACTIVE
+          </span>
+          <h4 class="font-syne font-800 text-lg uppercase leading-none">PING OUR MATRICES</h4>
+          <p class="text-xs text-zinc-600 font-sans leading-snug">
+            Tap directly into active satellite nodes across social frequency routers.
+          </p>
+          <div class="flex flex-col gap-2 pt-1">
+            <a href="https://instagram.com" target="_blank" class="brutal-btn bg-cyberteal text-center font-mono font-bold text-xs py-2 block uppercase">
+              INSTAGRAM.LOG
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="brutal-btn bg-cyberyellow text-center font-mono font-bold text-xs py-2 block uppercase">
+              LINKEDIN.STREAMS
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-7xl mx-auto border-t-2 border-brutalblack mt-12 pt-4 flex flex-col md:flex-row justify-between items-center font-mono text-[10px] text-zinc-700 font-bold gap-4">
+      <span>© 2026 COMPUTER SOCIETY OF INDIA. ALL DISKS PARSED.</span>
+      <span class="bg-brutalblack text-brutalwhite px-2 py-0.5">DEV_NODE: STAGE_1_CSE_ENGINEER</span>
+    </div>
+  </footer>
+
+  <script>
+    const routes = {
+      '#/': { viewId: 'view-home', init: () => {} },
+      '#/about': { viewId: 'view-about', init: () => {} },
+      '#/events': { viewId: 'view-events', init: () => {} },
+      '#/event-item': { 
+        viewId: 'view-event-item', 
+        init: (params) => {
+          const titleMap = {
+            devsprint: "DevSprint '26 // Architectural Sandbox",
+            lowlatency: "Low-Latency Operations Engineering Seminar"
+          };
+          document.getElementById('dynamic-event-title').textContent = titleMap[params.id] || "Assembled Technical Encounter Spec";
+        } 
+      },
+      '#/projects': { viewId: 'view-projects', init: () => {} },
+      '#/project-item': {
+        viewId: 'view-project-item',
+        init: (params) => {
+          const titleMap = {
+            hypergrid: "Repository: Project HyperGrid Canvas Vector",
+            edgecache: "Repository: EdgeCache Proxy Daemon Matrix"
+          };
+          document.getElementById('dynamic-project-title').textContent = titleMap[params.id] || "Compiled Member Production Repository";
+        }
+      },
+      '#/blog': { viewId: 'view-blog', init: () => {} },
+      '#/blog-post': {
+        viewId: 'view-blog-post',
+        init: (params) => {
+          const titleMap = {
+            brutalism: "The Case For Clean Neobrutalism vs. Opacity Frameworks"
+          };
+          document.getElementById('dynamic-blog-title').textContent = titleMap[params.id] || "Sub-Node Operational Documentation Intel";
+        }
+      }
+    };
+
+    function router() {
+      const hashString = window.location.hash || '#/';
+      const pathPart = hashString.split('?')[0];
+      const queryPart = hashString.split('?')[1] || '';
+      const params = {};
+      
+      if (queryPart) {
+        queryPart.split('&').forEach(param => {
+          const [key, val] = param.split('=');
+          if(key && val) params[key] = decodeURIComponent(val);
+        });
+      }
+
+      const route = routes[pathPart] || routes['#/'];
+      const currentActiveView = document.querySelector('.view-container.active-view');
+      const targetViewElement = document.getElementById(route.viewId);
+      
+      if (currentActiveView === targetViewElement) {
+        route.init(params);
+        return;
+      }
+
+      if (currentActiveView) {
+        gsap.to(currentActiveView, {
+          opacity: 0,
+          y: 8,
+          duration: 0.12,
+          onComplete: () => {
+            currentActiveView.classList.remove('active-view');
+            window.scrollTo(0, 0);
+            activateTargetView(targetViewElement, route, params);
+          }
+        });
+      } else {
+        activateTargetView(targetViewElement, route, params);
+      }
+    }
+
+    function activateTargetView(element, route, params) {
+      if (!element) return;
+      
+      // Force element reset states instantly before triggering slide animation
+      gsap.set(element, { opacity: 0, y: -8 });
+      element.classList.add('active-view');
+      route.init(params);
+      
+      gsap.to(element, {
+        opacity: 1,
+        y: 0,
+        duration: 0.22,
+        ease: 'power2.out'
+      });
+    }
+
+    function initializeApp() {
+      if (!window.location.hash || window.location.hash === '') {
+        window.location.hash = '#/';
+      } else {
+        router();
+      }
+    }
+
+    window.addEventListener('hashchange', router);
+    window.addEventListener('DOMContentLoaded', initializeApp);
+
+    // Interactive Card Physics
+    const interactiveCard = document.getElementById('interactive-card');
+    if (interactiveCard) {
+      interactiveCard.addEventListener('mousemove', (e) => {
+        const bounds = interactiveCard.getBoundingClientRect();
+        const deltaX = ((e.clientX - bounds.left) / bounds.width) - 0.5;
+        const deltaY = ((e.clientY - bounds.top) / bounds.height) - 0.5;
+        gsap.to(interactiveCard, {
+          transform: `perspective(1000px) rotateX(${deltaY * -12}deg) rotateY(${deltaX * 12}deg) translateY(-4px)`,
+          duration: 0.2,
+          ease: 'power2.out'
+        });
+      });
+      interactiveCard.addEventListener('mouseleave', () => {
+        gsap.to(interactiveCard, {
+          transform: `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`,
+          duration: 0.3,
+          ease: 'power3.out'
+        });
+      });
+    }
+    // =================================================================
+    // ================= INNOVATIVE TERMINAL CONTROLLER =================
+    // =================================================================
+    const termInput = document.getElementById('terminal-input');
+    const termHistory = document.getElementById('terminal-history');
+
+    if (termInput && termHistory) {
+      termInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const rawCmd = termInput.value.trim();
+          const cmd = rawCmd.toLowerCase();
+          termInput.value = ''; // Reset input area
+
+          // Append command mirror to stream log
+          const userLine = document.createElement('div');
+          userLine.innerHTML = `<span class="text-cyberyellow">visitor@csi:~$</span> ${rawCmd}`;
+          termHistory.appendChild(userLine);
+
+          // Handle command processing engine
+          const systemResponse = document.createElement('div');
+          systemResponse.className = "text-brutalwhite pl-2 font-bold";
+
+          if (cmd === 'help') {
+            systemResponse.innerHTML = "AVAILABLE ROUTINES:<br>&gt; 'socials' - Fetch social coordinates<br>&gt; 'about' - Jump to history node<br>&gt; 'clear' - Wipe terminal memory buffers";
+          } else if (cmd === 'socials') {
+            systemResponse.innerHTML = "COORDINATES DECRYPTED:<br>&gt; <a href='https://instagram.com' target='_blank' class='underline text-ghostpink'>INSTAGRAM.LOG</a><br>&gt; <a href='https://linkedin.com' target='_blank' class='underline text-cyberteal'>LINKEDIN.STREAMS</a>";
+          } else if (cmd === 'about') {
+            window.location.hash = '#/about';
+            systemResponse.innerText = "NAVIGATING TO ABOUT ENGINE MATRIX...";
+          } else if (cmd === 'clear') {
+            termHistory.innerHTML = "<div class='text-zinc-500'>// System memory buffers flushed cleanly. Ready.</div>";
+            return;
+          } else if (cmd === '') {
+            return;
+          } else {
+            systemResponse.className = "text-rose-400 pl-2";
+            systemResponse.innerText = `CRITICAL ERROR: Command '${rawCmd}' not recognized by kernel node. Type 'help' for directory parameters.`;
+          }
+
+          termHistory.appendChild(systemResponse);
+          
+          // Auto-scroll layout engine to match terminal depth instantly
+          termHistory.scrollTop = termHistory.scrollHeight;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
