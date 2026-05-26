@@ -42,7 +42,7 @@
       background-color: #FFFDF5; 
       font-family: 'DM Sans', sans-serif; 
       overflow-x: hidden;
-      transition: background-color 0.3s ease; /* For smooth theme transitions */
+      transition: background-color 0.3s ease, filter 0.5s ease; /* For smooth theme/invert transitions */
     }
     
     /* Neobrutalist Core Tokens */
@@ -73,7 +73,7 @@
     select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.5em; }
 
     /* Profile Node Sliding Layers */
-    .node-card-base { position: relative; overflow: visible; background-color: #000; }
+    .node-card-base { position: relative; overflow: visible; background-color: #000; min-height: 480px; }
     .node-card-slide {
       transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
     }
@@ -99,6 +99,16 @@
 
   <!-- ==================== MATRIX CANVAS OVERLAY ==================== -->
   <canvas id="matrix-canvas" class="fixed inset-0 w-full h-full z-[9999] pointer-events-none hidden opacity-0 transition-opacity duration-500"></canvas>
+
+  <!-- ==================== TECH MELTDOWN CRITICAL RED ALERTER ==================== -->
+  <div id="meltdown-alert" class="fixed inset-0 bg-rose-600/95 z-[9998] flex flex-col items-center justify-center text-center text-white hidden opacity-0 transition-opacity duration-300">
+    <div class="space-y-4 max-w-2xl px-6">
+      <div class="text-8xl animate-bounce">⚠️</div>
+      <h2 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tighter">SYS_CRITICAL // TOO HOT STUFF</h2>
+      <p class="font-mono text-sm tracking-widest text-cyberyellow animate-pulse">// LIQUID REVOLUTION ENGINE SHUTTING DOWN NOW. OVERCLOCK FAILED.</p>
+      <div class="font-mono text-[10px] text-zinc-300 pt-6">RECOVERY IN PROGRESS... AUTOMATED VENTILATION PROTOCOLS DISPATCHED</div>
+    </div>
+  </div>
 
   <!-- ==================== NAVIGATION CONTAINER ==================== -->
   <nav class="sticky top-0 z-50 w-full brutal-border border-t-0 border-x-0 bg-brutalwhite px-6 py-4 flex items-center justify-between">
@@ -217,54 +227,91 @@
       <div class="space-y-8">
         <div class="text-center space-y-2">
           <h2 class="font-syne font-800 text-4xl md:text-5xl uppercase tracking-tight">CSI Core Nodes</h2>
-          <p class="font-mono text-xs font-bold text-zinc-600">// LEVEL_1 DESTRUCTIVE INTERACTION MATRICES</p>
+          <p class="font-mono text-xs font-bold text-zinc-600">// LEVEL_1 DESTRUCTIVE INTERACTION MATRICES // TAP CTA TO DECRYPT CORE CARDS</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-6">
           
-          <!-- Node 01: Terminal Ecosystem Ping Card -->
-          <div class="node-card-base brutal-border brutal-shadow-black">
+          <!-- Node 01: Club President Card (Terminal Ecosystem Ping & Reveal) -->
+          <div class="node-card-base brutal-border brutal-shadow-black flex flex-col justify-between">
             <!-- Underneath Wire Layer -->
             <div class="absolute inset-0 bg-brutalblack text-neomint font-mono text-[10px] p-4 flex flex-col justify-end pointer-events-none">
               <span class="text-zinc-500">// LAYER_REVEALED: WIREFRAME</span>
               <span>&gt; ADDR: 0x7FFF3B20</span>
+              <span>&gt; NODE_ROLE: CLUB_PRESIDENT</span>
               <span>&gt; LOGIC_GATE: NAND_ROUTE</span>
               <span>&gt; TELEMETRY: ACTIVE_PING</span>
             </div>
             
             <!-- Sliding Top Layer -->
-            <div class="node-card-slide brutal-border bg-brutalwhite p-6 h-full flex flex-col justify-between relative z-10">
-              <div class="space-y-4">
-                <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
-                  <span class="font-mono font-bold text-xs bg-cyberteal border border-brutalblack px-1.5 py-0.5 uppercase">NODE_01 // ALPHA</span>
-                  <span class="w-2.5 h-2.5 bg-neomint rounded-full animate-ping"></span>
-                </div>
-                
-                <!-- Generative Custom Canvas Avatar -->
-                <div class="w-full h-32 border-2 border-brutalblack overflow-hidden relative bg-zinc-100">
-                  <canvas id="avatar-alpha" width="200" height="128" class="w-full h-full"></canvas>
+            <div id="node-alpha-slide" class="node-card-slide brutal-border bg-brutalwhite p-6 h-full flex flex-col justify-between relative z-10 transition-transform duration-300">
+              
+              <!-- State A: Cryptographic Locked Mode -->
+              <div id="alpha-locked-content" class="space-y-4 h-full flex flex-col justify-between">
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
+                    <span class="font-mono font-bold text-xs bg-cyberteal border border-brutalblack px-1.5 py-0.5 uppercase">NODE_01 // PRESIDENT</span>
+                    <span class="w-2.5 h-2.5 bg-neomint rounded-full animate-ping"></span>
+                  </div>
+                  
+                  <!-- Canvas Avatar Cryptographic Overlay -->
+                  <div class="w-full h-44 border-2 border-brutalblack overflow-hidden relative bg-zinc-100">
+                    <canvas id="avatar-alpha" width="200" height="176" class="w-full h-full"></canvas>
+                  </div>
+
+                  <div class="space-y-1">
+                    <h4 class="font-syne font-800 text-xl uppercase leading-none">DIR_NODE: CORE_PRES</h4>
+                    <p class="font-mono text-[10px] text-zinc-500">// STATUS: ENCRYPTED_HANDSHAKE</p>
+                  </div>
                 </div>
 
-                <div class="space-y-1">
-                  <h4 class="font-syne font-800 text-xl uppercase leading-none">DIR_NODE: ALIGN</h4>
-                  <p class="font-mono text-[10px] text-zinc-500">// CLUSTERS DIRECTIVE ENGINE</p>
+                <div class="pt-6">
+                  <button id="btn-ping-alpha" class="brutal-btn w-full bg-cyberteal text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider">
+                    EXECUTE_PING_
+                  </button>
                 </div>
-                
-                <p class="text-xs text-zinc-700 font-sans leading-relaxed">
-                  Controls structural architecture, directory logic alignment, and local system integration models.
-                </p>
               </div>
 
-              <div class="pt-6">
-                <button id="btn-ping-alpha" class="brutal-btn w-full bg-cyberteal text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider">
-                  EXECUTE_PING_
-                </button>
+              <!-- State B: Unlocked Decrypted Profile (Hidden by default) -->
+              <div id="alpha-unlocked-content" class="hidden space-y-4 h-full flex flex-col justify-between animate-[scanline_0.2s_ease-out_1]">
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
+                    <span class="font-mono font-bold text-xs bg-neomint border border-brutalblack px-1.5 py-0.5 uppercase">✓ DECRYPTED // CORES</span>
+                    <span class="w-2.5 h-2.5 bg-cyberteal rounded-full"></span>
+                  </div>
+
+                  <!-- Real Neobrutalist Styled Image Frame -->
+                  <div class="w-full h-44 border-2 border-brutalblack relative bg-ghostpink overflow-hidden flex items-center justify-center p-2 brutal-shadow-black">
+                    <!-- Real SVG Portrait Mask representing President -->
+                    <svg viewBox="0 0 100 100" class="w-32 h-32 text-brutalblack fill-current">
+                      <circle cx="50" cy="40" r="22" stroke="black" stroke-width="4" fill="#CAFFBF" />
+                      <path d="M15 90 C 20 65, 80 65, 85 90 Z" stroke="black" stroke-width="4" fill="#9BF6FF" />
+                    </svg>
+                    <div class="absolute bottom-2 right-2 bg-brutalblack text-white text-[8px] font-mono px-1">PORTRAIT // 01</div>
+                  </div>
+
+                  <div class="space-y-1">
+                    <h4 class="font-syne font-800 text-2xl uppercase leading-none">CLUB PRESIDENT</h4>
+                    <p class="font-mono text-[10px] text-zinc-600">// METRICS DIRECTIVE OVERSEER</p>
+                  </div>
+
+                  <p class="text-xs text-zinc-700 font-sans leading-relaxed">
+                    Primary coordinator, managing active satellite chapters across the state and leading multi-network engineering sprints.
+                  </p>
+                </div>
+
+                <div class="pt-6">
+                  <a href="https://linkedin.com" target="_blank" class="brutal-btn text-center block w-full bg-cyberteal text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider">
+                    CONNECT_VIA_LINKEDIN &rarr;
+                  </a>
+                </div>
               </div>
+
             </div>
           </div>
 
-          <!-- Node 02: Chaos Overclock Mode Card -->
-          <div id="node-beta-container" class="node-card-base brutal-border brutal-shadow-black">
+          <!-- Node 02: Tech Lead Card (Chaos Overload Meltdown & Reveal) -->
+          <div id="node-beta-container" class="node-card-base brutal-border brutal-shadow-black flex flex-col justify-between">
             <!-- Underneath Wire Layer -->
             <div class="absolute inset-0 bg-brutalblack text-rose-400 font-mono text-[10px] p-4 flex flex-col justify-end pointer-events-none">
               <span class="text-zinc-500">// ERROR_STATUS: CORE_MELTDOWN</span>
@@ -275,38 +322,74 @@
 
             <!-- Sliding Top Layer -->
             <div id="node-beta-slide" class="node-card-slide brutal-border bg-brutalwhite p-6 h-full flex flex-col justify-between relative z-10 transition-colors duration-200">
-              <div class="space-y-4">
-                <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
-                  <span id="beta-badge" class="font-mono font-bold text-xs bg-cyberyellow border border-brutalblack px-1.5 py-0.5 uppercase">NODE_02 // BETA</span>
-                  <span id="beta-flicker" class="w-2.5 h-2.5 bg-cyberyellow rounded-none"></span>
-                </div>
-                
-                <!-- Generative Custom Canvas Avatar -->
-                <div class="w-full h-32 border-2 border-brutalblack overflow-hidden relative bg-zinc-100">
-                  <canvas id="avatar-beta" width="200" height="128" class="w-full h-full"></canvas>
-                  <div id="beta-overload-overlay" class="absolute inset-0 bg-red-600/20 mix-blend-color-dodge hidden scanline-effect"></div>
+              
+              <!-- State A: Cryptographic Locked Mode -->
+              <div id="beta-locked-content" class="space-y-4 h-full flex flex-col justify-between">
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
+                    <span id="beta-badge" class="font-mono font-bold text-xs bg-cyberyellow border border-brutalblack px-1.5 py-0.5 uppercase">NODE_02 // TECH</span>
+                    <span id="beta-flicker" class="w-2.5 h-2.5 bg-cyberyellow rounded-none"></span>
+                  </div>
+                  
+                  <!-- Canvas Avatar Cryptographic Overlay -->
+                  <div class="w-full h-44 border-2 border-brutalblack overflow-hidden relative bg-zinc-100">
+                    <canvas id="avatar-beta" width="200" height="176" class="w-full h-full"></canvas>
+                    <div id="beta-overload-overlay" class="absolute inset-0 bg-red-600/20 mix-blend-color-dodge hidden scanline-effect"></div>
+                  </div>
+
+                  <div class="space-y-1">
+                    <h4 id="beta-title" class="font-syne font-800 text-xl uppercase leading-none">SYS_ARCH: VECTOR</h4>
+                    <p id="beta-temp" class="font-mono text-[10px] text-zinc-500">// CORE_TEMP: 35°C // STABLE</p>
+                  </div>
                 </div>
 
-                <div class="space-y-1">
-                  <h4 id="beta-title" class="font-syne font-800 text-xl uppercase leading-none">SYS_ARCH: VECTOR</h4>
-                  <p id="beta-temp" class="font-mono text-[10px] text-zinc-500">// CORE_TEMP: 35°C // STABLE</p>
+                <div class="pt-6">
+                  <button id="btn-overclock" class="brutal-btn w-full bg-cyberyellow text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider">
+                    INIT_OVERLOAD_
+                  </button>
                 </div>
-                
-                <p id="beta-desc" class="text-xs text-zinc-700 font-sans leading-relaxed">
-                  Engineers low-latency edge caches, data-routing protocols, and dithered systems rendering matrices.
-                </p>
               </div>
 
-              <div class="pt-6">
-                <button id="btn-overclock" class="brutal-btn w-full bg-cyberyellow text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider">
-                  INIT_OVERLOAD_
-                </button>
+              <!-- State B: Unlocked Decrypted Profile (Hidden by default) -->
+              <div id="beta-unlocked-content" class="hidden space-y-4 h-full flex flex-col justify-between">
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
+                    <span class="font-mono font-bold text-xs bg-rose-600 text-white border border-brutalblack px-1.5 py-0.5 uppercase">✓ OVERCLOCKED // REVEAL</span>
+                    <span class="w-2.5 h-2.5 bg-cyberyellow rounded-none"></span>
+                  </div>
+
+                  <!-- Real Neobrutalist Styled Image Frame -->
+                  <div class="w-full h-44 border-2 border-brutalblack relative bg-cyberyellow overflow-hidden flex items-center justify-center p-2 brutal-shadow-black">
+                    <!-- Real SVG Portrait Mask representing Tech Lead -->
+                    <svg viewBox="0 0 100 100" class="w-32 h-32 text-brutalblack fill-current">
+                      <rect x="25" y="20" width="50" height="40" stroke="black" stroke-width="4" fill="#FFC6FF" />
+                      <polygon points="10,90 90,90 75,65 25,65" stroke="black" stroke-width="4" fill="#CAFFBF" />
+                    </svg>
+                    <div class="absolute bottom-2 right-2 bg-brutalblack text-white text-[8px] font-mono px-1">PORTRAIT // 02</div>
+                  </div>
+
+                  <div class="space-y-1">
+                    <h4 class="font-syne font-800 text-2xl uppercase leading-none">TECH LEAD</h4>
+                    <p class="font-mono text-[10px] text-zinc-600">// SYSTEMS ARCHITECTURE CORE</p>
+                  </div>
+
+                  <p class="text-xs text-zinc-700 font-sans leading-relaxed">
+                    Responsible for lower-latency deployment cycles, local compiler logic optimization, and maintaining Git pipeline security layers.
+                  </p>
+                </div>
+
+                <div class="pt-6">
+                  <a href="https://github.com" target="_blank" class="brutal-btn text-center block w-full bg-cyberyellow text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider">
+                    PULL_GITHUB_SYS &rarr;
+                  </a>
+                </div>
               </div>
+
             </div>
           </div>
 
-          <!-- Node 03: Interactive Decrypt Card -->
-          <div class="node-card-base brutal-border brutal-shadow-black">
+          <!-- Node 03: Interactive Decrypt Card (Color Inversion & Reveal) -->
+          <div class="node-card-base brutal-border brutal-shadow-black flex flex-col justify-between">
             <!-- Underneath Wire Layer -->
             <div class="absolute inset-0 bg-brutalblack text-cyberteal font-mono text-[10px] p-4 flex flex-col justify-end pointer-events-none">
               <span class="text-zinc-500">// SECURITY_STATUS: ISOLATED</span>
@@ -316,52 +399,81 @@
             </div>
 
             <!-- Sliding Top Layer -->
-            <div id="node-gamma-slide" class="node-card-slide brutal-border bg-brutalwhite p-6 h-full flex flex-col justify-between relative z-10">
-              <div class="space-y-4">
-                <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
-                  <span class="font-mono font-bold text-xs bg-ghostpink border border-brutalblack px-1.5 py-0.5 uppercase">NODE_03 // GAMMA</span>
-                  <span class="w-2.5 h-2.5 bg-ghostpink rounded-none"></span>
-                </div>
-                
-                <!-- Generative Custom Canvas Avatar -->
-                <div class="w-full h-32 border-2 border-brutalblack overflow-hidden relative bg-zinc-100">
-                  <canvas id="avatar-gamma" width="200" height="128" class="w-full h-full"></canvas>
+            <div id="node-gamma-slide" class="node-card-slide brutal-border bg-brutalwhite p-6 h-full flex flex-col justify-between relative z-10 transition-transform duration-300">
+              
+              <!-- State A: Cryptographic Locked Mode -->
+              <div id="gamma-locked-content" class="space-y-4 h-full flex flex-col justify-between">
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
+                    <span class="font-mono font-bold text-xs bg-ghostpink border border-brutalblack px-1.5 py-0.5 uppercase">NODE_03 // VP</span>
+                    <span class="w-2.5 h-2.5 bg-ghostpink rounded-none"></span>
+                  </div>
+                  
+                  <!-- Canvas Avatar Cryptographic Overlay -->
+                  <div class="w-full h-44 border-2 border-brutalblack overflow-hidden relative bg-zinc-100">
+                    <canvas id="avatar-gamma" width="200" height="176" class="w-full h-full"></canvas>
+                  </div>
+
+                  <div class="space-y-1">
+                    <h4 class="font-syne font-800 text-xl uppercase leading-none">SEC_ENGINE: SIGMA</h4>
+                    <p class="font-mono text-[10px] text-zinc-500">// ACCESS LOCK ACTIVE</p>
+                  </div>
+                  
+                  <!-- Password decrypt screen -->
+                  <div id="gamma-lock-screen" class="space-y-2">
+                    <p class="text-xs text-zinc-700 font-sans leading-relaxed">
+                      Handshake coordinates isolated. Force sonograph color inversion matrix [Hint: VITC] to decode.
+                    </p>
+                    <div class="flex gap-1.5">
+                      <input type="text" id="gamma-input" class="brutal-border text-xs font-mono p-2 flex-1 uppercase" placeholder="ENTER CODE...">
+                      <button id="btn-decrypt" class="brutal-btn bg-ghostpink px-3 text-xs font-mono font-bold">DECRYPT</button>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="space-y-1">
-                  <h4 class="font-syne font-800 text-xl uppercase leading-none">SEC_ENGINE: SIGMA</h4>
-                  <p class="font-mono text-[10px] text-zinc-500">// ACCESS LOCK ACTIVE</p>
+                <div class="pt-6">
+                  <button id="btn-gamma-action" class="brutal-btn w-full bg-ghostpink text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider" disabled>
+                    HANDSHAKE_PENDING_
+                  </button>
                 </div>
-                
-                <!-- Password decrypt screen -->
-                <div id="gamma-lock-screen" class="space-y-2">
+              </div>
+
+              <!-- State B: Unlocked Decrypted Profile (Hidden by default) -->
+              <div id="gamma-unlocked-content" class="hidden space-y-4 h-full flex flex-col justify-between animate-pulse">
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
+                    <span class="font-mono font-bold text-xs bg-neomint border border-brutalblack px-1.5 py-0.5 uppercase">✓ DECODED // SECURE</span>
+                    <span class="w-2.5 h-2.5 bg-ghostpink rounded-none"></span>
+                  </div>
+
+                  <!-- Real Neobrutalist Styled Image Frame -->
+                  <div class="w-full h-44 border-2 border-brutalblack relative bg-cyberteal overflow-hidden flex items-center justify-center p-2 brutal-shadow-black">
+                    <!-- Real SVG Portrait Mask representing Vice President -->
+                    <svg viewBox="0 0 100 100" class="w-32 h-32 text-brutalblack fill-current">
+                      <polygon points="50,15 80,45 50,75 20,45" stroke="black" stroke-width="4" fill="#FDFFB6" />
+                      <circle cx="50" cy="45" r="12" stroke="black" stroke-width="4" fill="#FFC6FF" />
+                    </svg>
+                    <div class="absolute bottom-2 right-2 bg-brutalblack text-white text-[8px] font-mono px-1">PORTRAIT // 03</div>
+                  </div>
+
+                  <div class="space-y-1">
+                    <h4 class="font-syne font-800 text-2xl uppercase leading-none">VICE PRESIDENT</h4>
+                    <p class="font-mono text-[10px] text-zinc-600">// INFRASTRUCTURE CONTROLLER</p>
+                  </div>
+
                   <p class="text-xs text-zinc-700 font-sans leading-relaxed">
-                    Card metadata is encrypted. Input correct verification matrix [Hint: VITC] to decode.
+                    Manages regional node pipelines, coordinates statewide branch activities, and optimizes accessibility protocols.
                   </p>
-                  <div class="flex gap-1.5">
-                    <input type="text" id="gamma-input" class="brutal-border text-xs font-mono p-2 flex-1 uppercase" placeholder="ENTER CODE...">
-                    <button id="btn-decrypt" class="brutal-btn bg-ghostpink px-3 text-xs font-mono font-bold">DECRYPT</button>
-                  </div>
                 </div>
 
-                <!-- Unlocked dynamic screen -->
-                <div id="gamma-unlocked-screen" class="space-y-2 hidden">
-                  <p class="text-xs text-emerald-700 font-bold font-sans">
-                    ✓ Handshake resolved. Coordination pipeline decrypted:
-                  </p>
+                <div class="pt-6">
                   <div class="grid grid-cols-2 gap-2">
-                    <a href="https://linkedin.com" target="_blank" class="brutal-btn bg-neomint text-[9px] text-center font-mono py-1 block">LINKEDIN.LOG</a>
-                    <a href="mailto:admin@csi-vitc.dev" class="brutal-btn bg-cyberteal text-[9px] text-center font-mono py-1 block">EMAIL.SYS</a>
+                    <a href="https://linkedin.com" target="_blank" class="brutal-btn bg-neomint text-[9px] text-center font-mono py-3 block font-bold">LINKEDIN.SYS</a>
+                    <a href="mailto:vp@csi-vitc.dev" class="brutal-btn bg-cyberteal text-[9px] text-center font-mono py-3 block font-bold">EMAIL.PORT</a>
                   </div>
                 </div>
-
               </div>
 
-              <div class="pt-6">
-                <button id="btn-gamma-action" class="brutal-btn w-full bg-ghostpink text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider" disabled>
-                  HANDSHAKE_PENDING_
-                </button>
-              </div>
             </div>
           </div>
 
@@ -741,10 +853,9 @@
           ctxA.fillRect(0, 0, w, h);
           ctxA.fillStyle = '#9BF6FF'; // CyberTeal signals
           ctxA.font = '10px monospace';
-          // Render sliding scanner bar
           for(let y = 0; y < h; y += 12) {
             let signalStr = (Math.sin(tick*0.05 + y)*10000).toString(2).substring(0, 15);
-            ctxA.fillText(`NODE1 // ${signalStr}`, 10, y + 10);
+            ctxA.fillText(`PRES // ${signalStr}`, 10, y + 10);
           }
           ctxA.strokeStyle = 'rgba(155, 246, 255, 0.4)';
           ctxA.lineWidth = 1;
@@ -767,7 +878,6 @@
             if(x === 0) ctxB.moveTo(x, y); else ctxB.lineTo(x, y);
           }
           ctxB.stroke();
-          // Retrocross hairs
           ctxB.strokeStyle = 'rgba(253, 255, 182, 0.2)';
           ctxB.beginPath(); ctxB.moveTo(w/2, 0); ctxB.lineTo(w/2, h); ctxB.stroke();
           ctxB.beginPath(); ctxB.moveTo(0, h/2); ctxB.lineTo(w, h/2); ctxB.stroke();
@@ -786,7 +896,6 @@
           for(let j=0; j<h; j+=16) {
             ctxC.beginPath(); ctxC.moveTo(0, j); ctxC.lineTo(w, j); ctxC.stroke();
           }
-          // Interactive target ring
           let radius = 25 + Math.sin(tick * 0.06) * 10;
           ctxC.fillStyle = 'rgba(255, 198, 255, 0.15)';
           ctxC.beginPath(); ctxC.arc(w/2, h/2, radius, 0, 2 * Math.PI); ctxC.fill();
@@ -805,7 +914,7 @@
     // ==================== EDGE INTERACTION HANDLERS ===================
     // =================================================================
 
-    // Node 1 Handler: Executing dynamic terminal log ping
+    // Node 1 Handler: Executing terminal log ping + smooth redirect to LinkedIn + Card reveal
     document.addEventListener('click', (e) => {
       if (e.target && e.target.id === 'btn-ping-alpha') {
         const terminalEl = document.getElementById('terminal-history');
@@ -817,29 +926,44 @@
         setTimeout(() => {
           // Push ping visual logs with simulated timeline delay
           const lines = [
-            "&gt; visitor@csi:~$ ping core_node_alpha",
+            "&gt; visitor@csi:~$ ping president.node.csi-vitc",
             "&gt; [ESTABLISHING ENCRYPTED LINK...] CONNECTED",
             "&gt; 64 bytes from 10.220.44.19: icmp_seq=1 ttl=64 time=4.12ms",
             "&gt; 64 bytes from 10.220.44.19: icmp_seq=2 ttl=64 time=3.89ms",
             "&gt; 64 bytes from 10.220.44.19: icmp_seq=3 ttl=64 time=4.01ms",
-            "&gt; --- alpha.node.csi-vitc ping statistics ---",
-            "&gt; 3 packets transmitted, 3 received, 0% packet loss, time 2004ms"
+            "&gt; [HANDSHAKE ESTABLISHED] REVEALING PRESIDENT CREDENTIALS...",
+            "&gt; EXECUTING SATELLITE REDIRECT COORDINATES IN NEW TAB..."
           ];
 
           lines.forEach((l, index) => {
             setTimeout(() => {
               const pingOutput = document.createElement('div');
-              pingOutput.className = "text-neomint font-mono pl-2 mb-1";
+              pingOutput.className = "text-cyberteal font-mono pl-2 mb-1";
               pingOutput.innerHTML = l;
               terminalEl.appendChild(pingOutput);
               terminalEl.scrollTop = terminalEl.scrollHeight;
+
+              // On the last line, slide-reveal card and open LinkedIn tab smoothly
+              if (index === lines.length - 1) {
+                // Reveal the card
+                const lockedContent = document.getElementById('alpha-locked-content');
+                const unlockedContent = document.getElementById('alpha-unlocked-content');
+                
+                if (lockedContent && unlockedContent) {
+                  lockedContent.classList.add('hidden');
+                  unlockedContent.classList.remove('hidden');
+                }
+
+                // Open link
+                window.open('https://linkedin.com', '_blank');
+              }
             }, index * 250);
           });
         }, 800);
       }
     });
 
-    // Node 2 Handler: Systems Overclock Meltdown Animation
+    // Node 2 Handler: Overclock Meltdown Animation ("Too Hot Stuff")
     let betaOverloadActive = false;
     document.addEventListener('click', (e) => {
       if (e.target && e.target.id === 'btn-overclock') {
@@ -850,9 +974,9 @@
         const betaOverlay = document.getElementById('beta-overload-overlay');
         const betaTemp = document.getElementById('beta-temp');
         const betaTitle = document.getElementById('beta-title');
-        const betaDesc = document.getElementById('beta-desc');
         const betaBadge = document.getElementById('beta-badge');
         const btnOverclock = document.getElementById('btn-overclock');
+        const meltdownAlert = document.getElementById('meltdown-alert');
 
         // Toggle visual indicators to overload mode
         betaOverlay.classList.remove('hidden');
@@ -863,56 +987,63 @@
         betaBadge.classList.replace('bg-cyberyellow', 'bg-rose-600');
         betaBadge.classList.add('text-white');
 
-        // Pulse slide layout
+        // Pulse card layout
         gsap.to(betaSlide, {
           backgroundColor: '#000000',
           borderColor: '#E11D48',
           color: '#F43F5E',
           duration: 0.15,
-          repeat: 3,
+          repeat: -1,
           yoyo: true
         });
 
-        // Temperature rapid increment logic
+        // Temperature increment logic that spikes exponentially
         let tempObj = { value: 35 };
         gsap.to(tempObj, {
-          value: 112,
-          duration: 3.5,
-          ease: "power2.out",
+          value: 485,
+          duration: 4.5,
+          ease: "power2.in",
           onUpdate: () => {
-            betaTemp.textContent = `// CORE_TEMP: ${Math.floor(tempObj.value)}°C // STABLE`;
-            if (tempObj.value > 85) {
+            betaTemp.textContent = `// CORE_TEMP: ${Math.floor(tempObj.value)}°C // WARNING`;
+            if (tempObj.value > 120) {
               betaTemp.className = "font-mono text-[10px] text-rose-500 font-bold animate-pulse";
-              betaTemp.textContent = `// CRITICAL_OVERHEAT: ${Math.floor(tempObj.value)}°C // TERMINATE`;
-              betaTitle.textContent = "OVERLOAD_MELTDOWN";
-              betaDesc.textContent = "DANGER! Core parameters operating outside structural bounds. Liquid coolers disengaged. Logic processing matrices compromised.";
+              betaTemp.textContent = `// MELTDOWN_DANGER: ${Math.floor(tempObj.value)}°C // ABORT`;
+              betaTitle.textContent = "OVERLOAD_STAGES";
             }
           },
           onComplete: () => {
-            // Revert state back gently after chaos sequence
-            setTimeout(() => {
-              betaOverlay.classList.add('hidden');
-              betaTemp.className = "font-mono text-[10px] text-zinc-500";
-              betaTemp.textContent = "// CORE_TEMP: 35°C // STABLE";
-              betaTitle.textContent = "SYS_ARCH: VECTOR";
-              betaDesc.textContent = "Engineers low-latency edge caches, data-routing protocols, and dithered systems rendering matrices.";
-              btnOverclock.disabled = false;
-              btnOverclock.textContent = "INIT_OVERLOAD_";
-              btnOverclock.classList.replace('bg-rose-600', 'bg-cyberyellow');
-              btnOverclock.classList.remove('text-white');
-              betaBadge.classList.replace('bg-rose-600', 'bg-cyberyellow');
-              betaBadge.classList.remove('text-white');
-              betaSlide.style.backgroundColor = '#FFFDF5';
-              betaSlide.style.borderColor = '#000000';
-              betaSlide.style.color = '#000000';
-              betaOverloadActive = false;
-            }, 5000);
+            // Trigger fullscreen Red Alerter: "TOO HOT STUFF"
+            gsap.set(meltdownAlert, { display: 'flex' });
+            gsap.to(meltdownAlert, {
+              opacity: 1,
+              duration: 0.3,
+              onComplete: () => {
+                // Kill the endless vibration animation on the card
+                gsap.killTweensOf(betaSlide);
+                
+                // Hide locked state, show tech lead specs card
+                document.getElementById('beta-locked-content').classList.add('hidden');
+                document.getElementById('beta-unlocked-content').classList.remove('hidden');
+
+                setTimeout(() => {
+                  // Cool down system and remove red override screen
+                  gsap.to(meltdownAlert, {
+                    opacity: 0,
+                    duration: 0.5,
+                    onComplete: () => {
+                      gsap.set(meltdownAlert, { display: 'none' });
+                      betaOverloadActive = false;
+                    }
+                  });
+                }, 2800);
+              }
+            });
           }
         });
       }
     });
 
-    // Node 3 Handler: Security Key Decrypt Input System
+    // Node 3 Handler: Security Key Decrypt Grayscale Inversion System
     document.addEventListener('click', (e) => {
       if (e.target && e.target.id === 'btn-decrypt') {
         const keyInput = document.getElementById('gamma-input');
@@ -922,16 +1053,23 @@
         const gammaAction = document.getElementById('btn-gamma-action');
 
         if (keyInput.value.trim().toUpperCase() === 'VITC') {
-          // Complete decryption effect
+          // Stark Invert Filter across body to signify Sonograph decoding
+          document.body.style.filter = 'invert(1) grayscale(1)';
+
+          // Flicker effect using GSAP
           gsap.to(cardSlide, {
-            scale: 0.98,
+            scale: 0.95,
             duration: 0.1,
+            repeat: 7,
             yoyo: true,
-            repeat: 1,
             onComplete: () => {
+              // Restore color filter space smoothly
+              document.body.style.filter = 'none';
+
+              // Reveal Vice President card
               lockScreen.classList.add('hidden');
               unlockedScreen.classList.remove('hidden');
-              gammaAction.textContent = "HANDSHAKE_GRANTED_";
+              gammaAction.textContent = "ACCESS_RESOLVED_";
               gammaAction.classList.replace('bg-ghostpink', 'bg-neomint');
             }
           });
