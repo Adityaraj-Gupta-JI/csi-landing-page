@@ -104,7 +104,7 @@
   <div id="meltdown-alert" class="fixed inset-0 bg-rose-600/95 z-[9998] flex flex-col items-center justify-center text-center text-white hidden opacity-0 transition-opacity duration-300">
     <div class="space-y-4 max-w-2xl px-6">
       <div class="text-8xl animate-bounce">⚠️</div>
-      <h2 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tighter">SYS_CRITICAL // TOO HOT , BURNING, OUCH!</h2>
+      <h2 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tighter">SYS_CRITICAL // TOO HOT STUFF</h2>
       <p class="font-mono text-sm tracking-widest text-cyberyellow animate-pulse">// LIQUID REVOLUTION ENGINE SHUTTING DOWN NOW. OVERCLOCK FAILED.</p>
       <div class="font-mono text-[10px] text-zinc-300 pt-6">RECOVERY IN PROGRESS... AUTOMATED VENTILATION PROTOCOLS DISPATCHED</div>
     </div>
@@ -439,7 +439,7 @@
               </div>
 
               <!-- State B: Unlocked Decrypted Profile (Hidden by default) -->
-              <div id="gamma-unlocked-content" class="hidden space-y-4 h-full flex flex-col justify-between animate-pulse">
+              <div id="gamma-unlocked-content" class="hidden space-y-4 h-full flex flex-col justify-between">
                 <div class="space-y-4">
                   <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
                     <span class="font-mono font-bold text-xs bg-neomint border border-brutalblack px-1.5 py-0.5 uppercase">✓ INVERTED // VP CORES</span>
@@ -466,11 +466,15 @@
                   </p>
                 </div>
 
-                <div class="pt-6">
+                <div class="pt-6 space-y-3">
                   <div class="grid grid-cols-2 gap-2">
                     <a href="https://linkedin.com" target="_blank" class="brutal-btn bg-neomint text-[9px] text-center font-mono py-3 block font-bold">LINKEDIN.SYS</a>
                     <a href="mailto:vp@csi-vitc.dev" class="brutal-btn bg-cyberteal text-[9px] text-center font-mono py-3 block font-bold">EMAIL.PORT</a>
                   </div>
+                  <!-- Persistent Revert Button that triggers the terminal type simulation -->
+                  <button id="btn-revert-gamma" class="brutal-btn w-full bg-ghostpink text-brutalblack font-mono font-bold text-xs py-3 uppercase tracking-wider">
+                    REVERT_COLOR_SYS_
+                  </button>
                 </div>
               </div>
 
@@ -819,7 +823,7 @@
         ctxB.fillRect(w/4, h/4, w/2, h/2);
         ctxB.strokeRect(w/4, h/4, w/2, h/2);
         // Draw server connections
-        ctxB.beginPath(); ctxB.moveTo(w/4, h/4); ctxB.lineTo(0, 0); ctxB.stroke();
+        ctxB.beginPath(); ctxB.moveTo(w/4, h/4); ctxB.lineTo(0, 0); stroke();
         ctxB.beginPath(); ctxB.moveTo(w*0.75, h/4); ctxB.lineTo(w, 0); ctxB.stroke();
         ctxB.beginPath(); ctxB.moveTo(w/4, h*0.75); ctxB.lineTo(0, h); ctxB.stroke();
         ctxB.beginPath(); ctxB.moveTo(w*0.75, h*0.75); ctxB.lineTo(w, h); ctxB.stroke();
@@ -1089,6 +1093,40 @@
       }
     });
 
+    // Node 3 Handler Extra: CTA Revert Color System Smoothly through simulated Terminal sequence
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.id === 'btn-revert-gamma') {
+        const terminalEl = document.getElementById('terminal-history');
+        const termInput = document.getElementById('terminal-input');
+        if (!terminalEl) return;
+        
+        // Scroll down smoothly to terminal
+        terminalEl.scrollIntoView({ behavior: 'smooth' });
+
+        // Simulate typing sequence after scroll completes
+        setTimeout(() => {
+          if (termInput) {
+            let commandText = "revert";
+            termInput.value = "";
+            let i = 0;
+            let typingInterval = setInterval(() => {
+              termInput.value += commandText[i];
+              i++;
+              if (i >= commandText.length) {
+                clearInterval(typingInterval);
+                setTimeout(() => {
+                  termInput.value = "";
+                  executeTerminalCommand("revert");
+                }, 300);
+              }
+            }, 100);
+          } else {
+            executeTerminalCommand("revert");
+          }
+        }, 800);
+      }
+    });
+
     // =================================================================
     // ===================== MATRIX RAIN SYSTEM ========================
     // =================================================================
@@ -1137,58 +1175,62 @@
     // =================================================================
     // ================= INNOVATIVE TERMINAL CONTROLLER =================
     // =================================================================
-    const termInput = document.getElementById('terminal-input');
-    const termHistory = document.getElementById('terminal-history');
-    
-    // Array of Neobrutalist background token hexes for dynamic theming
     const themeTokens = ['#FFFDF5', '#FFC6FF', '#9BF6FF', '#FDFFB6', '#CAFFBF'];
     let currentThemeIndex = 0;
 
-    if (termInput && termHistory) {
+    function executeTerminalCommand(cmdText) {
+      const termHistory = document.getElementById('terminal-history');
+      if (!termHistory) return;
+
+      const rawCmd = cmdText.trim();
+      const cmd = rawCmd.toLowerCase();
+
+      // Append command mirror to stream log
+      const userLine = document.createElement('div');
+      userLine.innerHTML = `<span class="text-cyberyellow">visitor@csi:~$</span> ${rawCmd}`;
+      termHistory.appendChild(userLine);
+
+      const systemResponse = document.createElement('div');
+      systemResponse.className = "text-brutalwhite pl-2 font-bold mb-2";
+
+      // Terminal Command Switch Engine
+      if (cmd === 'help') {
+        systemResponse.innerHTML = "AVAILABLE ROUTINES:<br>&gt; 'socials' - Fetch social coordinates<br>&gt; 'about' - Jump to history node<br>&gt; 'matrix' - Execute hidden visual protocol<br>&gt; 'theme' - Cycle interface color tokens<br>&gt; 'revert' - Restore original sonograph color spectrum<br>&gt; 'clear' - Wipe terminal memory buffers";
+      } else if (cmd === 'socials') {
+        systemResponse.innerHTML = "COORDINATES DECRYPTED:<br>&gt; <a href='https://instagram.com' target='_blank' class='underline text-ghostpink'>INSTAGRAM.LOG</a><br>&gt; <a href='https://linkedin.com' target='_blank' class='underline text-cyberteal'>LINKEDIN.STREAMS</a>";
+      } else if (cmd === 'about') {
+        window.location.hash = '#/about';
+        systemResponse.innerText = "NAVIGATING TO ABOUT ENGINE MATRIX...";
+      } else if (cmd === 'matrix') {
+        triggerMatrix();
+        systemResponse.innerHTML = "<span class='text-neomint'>MATRIX PROTOCOL INITIATED. INJECTING OVERLAY... [TIMEOUT: 10s]</span>";
+      } else if (cmd === 'theme') {
+        currentThemeIndex = (currentThemeIndex + 1) % themeTokens.length;
+        document.body.style.backgroundColor = themeTokens[currentThemeIndex];
+        systemResponse.innerHTML = `<span class='text-ghostpink'>THEME PARAMETERS OVERRIDDEN: [HEX_TOKEN_APPLIED]</span>`;
+      } else if (cmd === 'revert') {
+        document.body.style.filter = 'none';
+        systemResponse.innerHTML = "<span class='text-neomint'>COLOR SPECTRUM RESTORED TO ORIGINAL FREQUENCY.</span>";
+      } else if (cmd === 'clear') {
+        termHistory.innerHTML = "<div class='text-zinc-500'>// System memory buffers flushed cleanly. Ready.</div>";
+        return;
+      } else if (cmd === '') {
+        return;
+      } else {
+        systemResponse.className = "text-rose-400 pl-2 mb-2";
+        systemResponse.innerText = `CRITICAL ERROR: Command '${rawCmd}' not recognized by kernel node. Type 'help'.`;
+      }
+
+      termHistory.appendChild(systemResponse);
+      termHistory.scrollTop = termHistory.scrollHeight;
+    }
+
+    const termInput = document.getElementById('terminal-input');
+    if (termInput) {
       termInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-          const rawCmd = termInput.value.trim();
-          const cmd = rawCmd.toLowerCase();
+          executeTerminalCommand(termInput.value);
           termInput.value = '';
-
-          // Mirror user command
-          const userLine = document.createElement('div');
-          userLine.innerHTML = `<span class="text-cyberyellow">visitor@csi:~$</span> ${rawCmd}`;
-          termHistory.appendChild(userLine);
-
-          const systemResponse = document.createElement('div');
-          systemResponse.className = "text-brutalwhite pl-2 font-bold mb-2";
-
-          // Terminal Command Switch Engine
-          if (cmd === 'help') {
-            systemResponse.innerHTML = "AVAILABLE ROUTINES:<br>&gt; 'socials' - Fetch social coordinates<br>&gt; 'about' - Jump to history node<br>&gt; 'matrix' - Execute hidden visual protocol<br>&gt; 'theme' - Cycle interface color tokens<br>&gt; 'revert' - Restore original sonograph color spectrum<br>&gt; 'clear' - Wipe terminal memory buffers";
-          } else if (cmd === 'socials') {
-            systemResponse.innerHTML = "COORDINATES DECRYPTED:<br>&gt; <a href='https://instagram.com' target='_blank' class='underline text-ghostpink'>INSTAGRAM.LOG</a><br>&gt; <a href='https://linkedin.com' target='_blank' class='underline text-cyberteal'>LINKEDIN.STREAMS</a>";
-          } else if (cmd === 'about') {
-            window.location.hash = '#/about';
-            systemResponse.innerText = "NAVIGATING TO ABOUT ENGINE MATRIX...";
-          } else if (cmd === 'matrix') {
-            triggerMatrix();
-            systemResponse.innerHTML = "<span class='text-neomint'>MATRIX PROTOCOL INITIATED. INJECTING OVERLAY... [TIMEOUT: 10s]</span>";
-          } else if (cmd === 'theme') {
-            currentThemeIndex = (currentThemeIndex + 1) % themeTokens.length;
-            document.body.style.backgroundColor = themeTokens[currentThemeIndex];
-            systemResponse.innerHTML = `<span class='text-ghostpink'>THEME PARAMETERS OVERRIDDEN: [HEX_TOKEN_APPLIED]</span>`;
-          } else if (cmd === 'revert') {
-            document.body.style.filter = 'none';
-            systemResponse.innerHTML = "<span class='text-neomint'>COLOR SPECTRUM RESTORED TO ORIGINAL FREQUENCY.</span>";
-          } else if (cmd === 'clear') {
-            termHistory.innerHTML = "<div class='text-zinc-500'>// System memory buffers flushed cleanly. Ready.</div>";
-            return;
-          } else if (cmd === '') {
-            return;
-          } else {
-            systemResponse.className = "text-rose-400 pl-2 mb-2";
-            systemResponse.innerText = `CRITICAL ERROR: Command '${rawCmd}' not recognized by kernel node. Type 'help'.`;
-          }
-
-          termHistory.appendChild(systemResponse);
-          termHistory.scrollTop = termHistory.scrollHeight;
         }
       });
     }
