@@ -104,7 +104,7 @@
   <div id="meltdown-alert" class="fixed inset-0 bg-rose-600/95 z-[9998] flex flex-col items-center justify-center text-center text-white hidden opacity-0 transition-opacity duration-300">
     <div class="space-y-4 max-w-2xl px-6">
       <div class="text-8xl animate-bounce">⚠️</div>
-      <h2 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tighter">SYS_CRITICAL // TOO HOT STUFF</h2>
+      <h2 class="font-syne font-800 text-5xl md:text-7xl uppercase tracking-tighter">SYS_CRITICAL // TOO HOT , BURNING, OUCH!</h2>
       <p class="font-mono text-sm tracking-widest text-cyberyellow animate-pulse">// LIQUID REVOLUTION ENGINE SHUTTING DOWN NOW. OVERCLOCK FAILED.</p>
       <div class="font-mono text-[10px] text-zinc-300 pt-6">RECOVERY IN PROGRESS... AUTOMATED VENTILATION PROTOCOLS DISPATCHED</div>
     </div>
@@ -442,7 +442,7 @@
               <div id="gamma-unlocked-content" class="hidden space-y-4 h-full flex flex-col justify-between animate-pulse">
                 <div class="space-y-4">
                   <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
-                    <span class="font-mono font-bold text-xs bg-neomint border border-brutalblack px-1.5 py-0.5 uppercase">✓ DECODED // SECURE</span>
+                    <span class="font-mono font-bold text-xs bg-neomint border border-brutalblack px-1.5 py-0.5 uppercase">✓ INVERTED // VP CORES</span>
                     <span class="w-2.5 h-2.5 bg-ghostpink rounded-none"></span>
                   </div>
 
@@ -1047,13 +1047,13 @@
     document.addEventListener('click', (e) => {
       if (e.target && e.target.id === 'btn-decrypt') {
         const keyInput = document.getElementById('gamma-input');
-        const lockScreen = document.getElementById('gamma-lock-screen');
-        const unlockedScreen = document.getElementById('gamma-unlocked-screen');
+        const lockedContent = document.getElementById('gamma-locked-content');
+        const unlockedContent = document.getElementById('gamma-unlocked-content');
         const cardSlide = document.getElementById('node-gamma-slide');
         const gammaAction = document.getElementById('btn-gamma-action');
 
         if (keyInput.value.trim().toUpperCase() === 'VITC') {
-          // Stark Invert Filter across body to signify Sonograph decoding
+          // Stark Invert Filter across body to signify Sonograph decoding - LASTS FOREVER
           document.body.style.filter = 'invert(1) grayscale(1)';
 
           // Flicker effect using GSAP
@@ -1063,12 +1063,11 @@
             repeat: 7,
             yoyo: true,
             onComplete: () => {
-              // Restore color filter space smoothly
-              document.body.style.filter = 'none';
-
-              // Reveal Vice President card
-              lockScreen.classList.add('hidden');
-              unlockedScreen.classList.remove('hidden');
+              // Reveal Vice President card correctly (fixing previous layout container double-stacking bug)
+              if (lockedContent && unlockedContent) {
+                lockedContent.classList.add('hidden');
+                unlockedContent.classList.remove('hidden');
+              }
               gammaAction.textContent = "ACCESS_RESOLVED_";
               gammaAction.classList.replace('bg-ghostpink', 'bg-neomint');
             }
@@ -1162,7 +1161,7 @@
 
           // Terminal Command Switch Engine
           if (cmd === 'help') {
-            systemResponse.innerHTML = "AVAILABLE ROUTINES:<br>&gt; 'socials' - Fetch social coordinates<br>&gt; 'about' - Jump to history node<br>&gt; 'matrix' - Execute hidden visual protocol<br>&gt; 'theme' - Cycle interface color tokens<br>&gt; 'clear' - Wipe terminal memory buffers";
+            systemResponse.innerHTML = "AVAILABLE ROUTINES:<br>&gt; 'socials' - Fetch social coordinates<br>&gt; 'about' - Jump to history node<br>&gt; 'matrix' - Execute hidden visual protocol<br>&gt; 'theme' - Cycle interface color tokens<br>&gt; 'revert' - Restore original sonograph color spectrum<br>&gt; 'clear' - Wipe terminal memory buffers";
           } else if (cmd === 'socials') {
             systemResponse.innerHTML = "COORDINATES DECRYPTED:<br>&gt; <a href='https://instagram.com' target='_blank' class='underline text-ghostpink'>INSTAGRAM.LOG</a><br>&gt; <a href='https://linkedin.com' target='_blank' class='underline text-cyberteal'>LINKEDIN.STREAMS</a>";
           } else if (cmd === 'about') {
@@ -1175,6 +1174,9 @@
             currentThemeIndex = (currentThemeIndex + 1) % themeTokens.length;
             document.body.style.backgroundColor = themeTokens[currentThemeIndex];
             systemResponse.innerHTML = `<span class='text-ghostpink'>THEME PARAMETERS OVERRIDDEN: [HEX_TOKEN_APPLIED]</span>`;
+          } else if (cmd === 'revert') {
+            document.body.style.filter = 'none';
+            systemResponse.innerHTML = "<span class='text-neomint'>COLOR SPECTRUM RESTORED TO ORIGINAL FREQUENCY.</span>";
           } else if (cmd === 'clear') {
             termHistory.innerHTML = "<div class='text-zinc-500'>// System memory buffers flushed cleanly. Ready.</div>";
             return;
