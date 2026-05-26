@@ -439,7 +439,7 @@
               </div>
 
               <!-- State B: Unlocked Decrypted Profile (Hidden by default) -->
-              <div id="gamma-unlocked-content" class="hidden space-y-4 h-full flex flex-col justify-between">
+              <div id="gamma-unlocked-content" class="hidden space-y-4 h-full flex flex-col justify-between animate-pulse">
                 <div class="space-y-4">
                   <div class="flex items-center justify-between border-b-2 border-brutalblack pb-2">
                     <span class="font-mono font-bold text-xs bg-neomint border border-brutalblack px-1.5 py-0.5 uppercase">✓ INVERTED // VP CORES</span>
@@ -808,7 +808,7 @@
         ctxA.globalCompositeOperation = 'source-over'; // Reset
       }
 
-      // Graphic for Beta Project
+      // Graphic for Beta Project (FIXED: Resolved ctxB global scope typo on stroke())
       const betaCanvas = document.getElementById('canvas-beta');
       if (betaCanvas && betaCanvas.getContext) {
         const ctxB = betaCanvas.getContext('2d');
@@ -823,7 +823,7 @@
         ctxB.fillRect(w/4, h/4, w/2, h/2);
         ctxB.strokeRect(w/4, h/4, w/2, h/2);
         // Draw server connections
-        ctxB.beginPath(); ctxB.moveTo(w/4, h/4); ctxB.lineTo(0, 0); stroke();
+        ctxB.beginPath(); ctxB.moveTo(w/4, h/4); ctxB.lineTo(0, 0); ctxB.stroke();
         ctxB.beginPath(); ctxB.moveTo(w*0.75, h/4); ctxB.lineTo(w, 0); ctxB.stroke();
         ctxB.beginPath(); ctxB.moveTo(w/4, h*0.75); ctxB.lineTo(0, h); ctxB.stroke();
         ctxB.beginPath(); ctxB.moveTo(w*0.75, h*0.75); ctxB.lineTo(w, h); ctxB.stroke();
