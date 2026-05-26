@@ -138,6 +138,41 @@
         <span>✦ NON-PROFIT SYSTEMS ADVANCEMENT ✦</span>
       </div>
     </div>
+
+    <!-- Restored Core Operations Section -->
+    <section class="px-6 py-20 max-w-7xl mx-auto space-y-12">
+      <h2 class="font-syne font-800 text-4xl md:text-5xl uppercase text-center">Core Operations</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="brutal-border p-6 bg-brutalwhite brutal-shadow-black">
+          <div class="w-10 h-10 bg-cyberteal border-2 border-brutalblack flex items-center justify-center font-mono font-bold shadow-[2px_2px_0px_#000] mb-4">01</div>
+          <h3 class="font-syne font-700 text-xl uppercase mb-2">Hackathons</h3>
+          <p class="text-sm text-zinc-600">High-velocity layout sprints where nodes gather to build production features under strict clocks.</p>
+        </div>
+        <div class="brutal-border p-6 bg-brutalwhite brutal-shadow-black">
+          <div class="w-10 h-10 bg-neomint border-2 border-brutalblack flex items-center justify-center font-mono font-bold shadow-[2px_2px_0px_#000] mb-4">02</div>
+          <h3 class="font-syne font-700 text-xl uppercase mb-2">Workshops</h3>
+          <p class="text-sm text-zinc-600">Deep dives into lower-latency application nodes, server patterns, and clean utility-first design syntax.</p>
+        </div>
+        <div class="brutal-border p-6 bg-brutalwhite brutal-shadow-black">
+          <div class="w-10 h-10 bg-ghostpink border-2 border-brutalblack flex items-center justify-center font-mono font-bold shadow-[2px_2px_0px_#000] mb-4">03</div>
+          <h3 class="font-syne font-700 text-xl uppercase mb-2">Sprints</h3>
+          <p class="text-sm text-zinc-600">Direct student collaboration scaling structural systems and peer mentorship modules.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Restored Ecosystem Voices Section -->
+    <section class="bg-neomint px-6 py-16 border-t-4 border-brutalblack">
+      <div class="max-w-4xl mx-auto text-center space-y-6">
+        <h2 class="font-syne font-800 text-3xl md:text-4xl uppercase tracking-tight">Ecosystem Voices</h2>
+        <div class="brutal-border bg-brutalwhite p-8 brutal-shadow-black text-left transform -rotate-1">
+          <p class="font-mono text-base md:text-lg italic leading-relaxed text-zinc-900">
+            "CSI completely transformed how I evaluate system architecture. We don't write clean text patterns for a grades sheet—we launch production payloads that matter."
+          </p>
+          <p class="font-mono font-bold text-xs mt-4 uppercase text-zinc-600">// Dev Node, Alumni Class of '25</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ==================== VIEW: ABOUT LAYER ==================== -->
@@ -592,6 +627,28 @@
           termHistory.appendChild(systemResponse);
           termHistory.scrollTop = termHistory.scrollHeight;
         }
+      });
+    }
+
+    // Interactive Card Physics
+    const interactiveCard = document.getElementById('interactive-card');
+    if (interactiveCard) {
+      interactiveCard.addEventListener('mousemove', (e) => {
+        const bounds = interactiveCard.getBoundingClientRect();
+        const deltaX = ((e.clientX - bounds.left) / bounds.width) - 0.5;
+        const deltaY = ((e.clientY - bounds.top) / bounds.height) - 0.5;
+        gsap.to(interactiveCard, {
+          transform: `perspective(1000px) rotateX(${deltaY * -12}deg) rotateY(${deltaX * 12}deg) translateY(-4px)`,
+          duration: 0.2,
+          ease: 'power2.out'
+        });
+      });
+      interactiveCard.addEventListener('mouseleave', () => {
+        gsap.to(interactiveCard, {
+          transform: `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`,
+          duration: 0.3,
+          ease: 'power3.out'
+        });
       });
     }
   </script>
